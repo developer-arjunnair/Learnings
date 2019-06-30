@@ -1,4 +1,6 @@
-let { graphql, buildSchema } = require("graphql");
+const express = require("express");
+const graphqlHTTP = require("express-graphql");
+const { buildSchema } = require("graphql");
 
 const schema = buildSchema(`
   type Query {
@@ -13,8 +15,16 @@ const root = {
   name: () => "Arjun"
 };
 
-graphql(schema, "{hello,name,id}", root).then(
-  ({ data: { hello, name, id } }) => {
-    console.log(`${hello} ${name} your id is ${id}`);
-  }
+const app = express();
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema,
+    rootValue: root,
+    graphiql: true
+  })
 );
+app.listen(4000);
+console.log("------------------------------------");
+console.log("runnin gql server at localhost:4000/graphql");
+console.log("------------------------------------");

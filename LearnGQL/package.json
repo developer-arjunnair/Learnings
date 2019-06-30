@@ -9,6 +9,9 @@
   "author": "Arjun Nair",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
+    "express-graphql": "^0.8.0",
+    "fb-watchman": "^2.0.0",
     "graphql": "^14.4.1"
   }
 }
